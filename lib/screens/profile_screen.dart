@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_kakao/components/bottom_icon_button.dart';
 import 'package:flutter_kakao/components/round_icon_button.dart';
 import 'package:flutter_kakao/models/user.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -45,7 +46,53 @@ class ProfileScreen extends StatelessWidget {
             SizedBox(width: 20),
           ],
         ),
+        body: Column(
+          children: [
+            Spacer(),
+            user.name == me.name ? _buildMyIcons() : _buildFridendIcons(),
+          ],
+        ),
       ),
     );
+  }
+
+  Widget _buildMyIcons() {
+    return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 18),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                BottomIconButton(
+                  icon: FontAwesomeIcons.comment,
+                  text: "나와의 채팅",
+                ),
+                SizedBox(width: 50),
+                BottomIconButton(
+                  icon: FontAwesomeIcons.pen,
+                  text: "프로필 편집",
+                ),
+              ],
+            ),
+          );
+  }
+
+  Widget _buildFridendIcons() {
+    return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 18),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                BottomIconButton(
+                  icon: FontAwesomeIcons.comment,
+                  text: "1:1 채팅",
+                ),
+                SizedBox(width: 50),
+                BottomIconButton(
+                  icon: FontAwesomeIcons.phone,
+                  text: "통화하기"
+                ),
+              ],
+            ),
+          );
   }
 }
